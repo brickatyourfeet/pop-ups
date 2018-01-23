@@ -1,0 +1,36 @@
+dependencies: \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native/Libraries/Text/RCTTextField.m \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native/Libraries/Text/RCTTextField.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTComponent.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTView.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTPointerEvents.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native/Libraries/Text/RCTTextInput.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native/Libraries/Text/RCTBackedTextInputViewProtocol.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native/Libraries/Text/RCTFontAttributes.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native/Libraries/Text/RCTFontAttributesDelegate.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTEventDispatcher.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFont.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUIManager.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTRootView.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTViewManager.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/UIView+React.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native/Libraries/Text/RCTBackedTextInputDelegate.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native/Libraries/Text/RCTTextSelection.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native/Libraries/Text/RCTUITextField.h
