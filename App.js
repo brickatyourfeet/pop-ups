@@ -1,29 +1,44 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+
+import SpotInput from './src/components/SpotInput/SpotInput'
+import EventList from './src/components/EventList/EventList'
+
 
 export default class App extends React.Component {
   state = {
-    spot: ''
+    popups: []
+  }
+//if no image is added for pop-up, just default to pop-up logo
+  spotAddedHandler = spot => {
+    this.setState(prevState => {
+      return {
+        popups: prevState.popups.concat({
+          key: Math.random(),
+          title: spot,   //here we'll need a legit id, and times, and lat/long
+          image: {
+            uri: 'https://d30y9cdsu7xlg0.cloudfront.net/png/50592-200.png'
+          }
+        })
+      }
+    })
   }
 
-  spotChangedHandler = (inputValue) => {
-    this.setState({
-      spot: inputValue
+  spotTrashedHandler = key => {
+    this.setState(prevState => {
+      return {
+        popups: prevState.popups.filter(spot => {
+          return spot.key !== key
+        })
+      }
     })
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.inputDiv}>
-        <TextInput 
-          placeholder="a placeholder"
-          value={this.state.spot}
-          onChangeText={this.spotChangedHandler}
-          style={styles.inputField}
-        />
-          <Button title="Add Pop-Up!" style={styles.addButton}/>
-        </View>
+        <SpotInput onSpotAdded={this.spotAddedHandler} />
+        <EventList popups={this.state.popups} onEventTrashed={this.spotTrashedHandler}/>
       </View>
     );
   }
@@ -35,23 +50,7 @@ const styles = StyleSheet.create({
     padding: 25,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  inputDiv: {
-    //flex: 1,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  inputField: {
-    width: "65%",
-    color: "red",
-    fontFamily: "TrebuchetMS-Bold"
-    // textShadowColor: "#deb887",
-    // textShadowRadius: 1
-  },
-  addButton: {
-    width: "35%"
+    justifyContent: 'flex-start'
   }
+  
 });
