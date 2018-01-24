@@ -14,7 +14,7 @@ const EventItem = (props) => (
 
 const styles = StyleSheet.create({
     eventItem: {
-        width: '90%',
+        width: '80%',
         padding: 5,
         backgroundColor: "#fcdede",
         margin: 4,

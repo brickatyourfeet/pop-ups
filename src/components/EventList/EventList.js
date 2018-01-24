@@ -13,14 +13,14 @@ const EventList = props => {
             <EventItem 
                 spot={itemData.item.title} 
                 dummyImage={itemData.item.image}
-                onEventTouched={() => props.onEventTrashed(itemData.item.key)}/>)}
+                onEventTouched={() => props.onEventSelected(itemData.item.key)}/>)}
             />
         )
 }
 
 const styles = StyleSheet.create({
     eventDiv: {
-        width: "75%"
+        width: "100%"
     }
 })
 
