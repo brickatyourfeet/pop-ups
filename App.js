@@ -1,70 +1,47 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { connect } from 'react-redux'
 
 import SpotInput from './src/components/SpotInput/SpotInput'
 import EventList from './src/components/EventList/EventList'
 import EventInfo from './src/components/EventInfo/EventInfo'
+import { addPopup, selectPopup, deletePopup, unselectPopup } from './src/store/actions/index'
 
-export default class App extends React.Component {
-  state = {
-    popups: [],
-    selected: null
-  }
+class App extends React.Component {
+
 //if no image is added for pop-up, just default to pop-up logo
 //will need form for beg time, end time, but list will only show title and pic
   spotAddedHandler = spot => {
-    this.setState(prevState => {
-      return {
-        popups: prevState.popups.concat({
-          key: Math.random(),
-          title: spot,   //here we'll need a legit id, and times, and lat/long
-          image: {
-            uri: 'https://d30y9cdsu7xlg0.cloudfront.net/png/50592-200.png'
-          }
-        })
-      }
-    })
+    this.props.onAddPopup(spot)
+    console.log('spot')
+    console.log(spot)
   }
 
   spotSelectedHandler = key => {
-    this.setState(prevState => {
-      return {
-        selected: prevState.popups.find(popup => {
-          return popup.key === key
-        })
-      }
-    })
-
+    this.props.onSelectPopup(key)
   }
 
   eventDeletedHandler = () => {
-    this.setState(prevState => {
-      return {
-        popups: prevState.popups.filter(spot => {
-          return spot.key !== prevState.selected.key
-        }),
-        selected: null
-      }
-    })
+    this.props.onDeletePopup()
   }
 
   pageClosedHandler = () => {
-    this.setState({
-      selected: null
-    })
+    this.props.onUnselectPopup()
   }
 
   render() {
     return (
       <View style={styles.container}>
         <EventInfo 
-          selected={this.state.selected} 
+          selected={this.props.selected} 
           onEventDeleted={this.eventDeletedHandler} 
           onPageClosed={this.pageClosedHandler} 
         />
-        <EventList selected={this.state.selected} />
         <SpotInput onSpotAdded={this.spotAddedHandler} />
-        <EventList popups={this.state.popups} onEventSelected={this.spotSelectedHandler}/>
+        <EventList 
+          popups={this.props.popups} 
+          onEventSelected={this.spotSelectedHandler}
+        />
       </View>
     );
   }
@@ -81,7 +58,26 @@ const styles = StyleSheet.create({
   
 });
 
+const mapStateToProps = state => {
+  return {
+    popups: state.popups.popups,
+    selected: state.popups.selected
+  }
+}
 
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddPopup: title => {
+      console.log(addPopup(title))
+      return dispatch(addPopup(title))
+    },
+    onDeletePopup: () => dispatch(deletePopup()),
+    onSelectPopup: key => dispatch(selectPopup(key)),
+    onUnselectPopup: () => dispatch(unselectPopup())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
 
 // modals for everything!  - they're just other pages!
 // redirect buttons for everything! map!

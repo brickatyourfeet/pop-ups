@@ -1,0 +1,4 @@
+export const ADD_POPUP = 'ADD_POPUP'
+export const DELETE_POPUP = 'DELETE_POPUP'
+export const SELECT_POPUP = 'SELECT_POPUP'
+export const UNSELECT_POPUP = 'UNSELECT_POPUP'
