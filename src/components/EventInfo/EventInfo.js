@@ -1,5 +1,7 @@
 import React from 'react'
-import { Modal, View, Image, Text, Button, StyleSheet } from 'react-native'
+import { Modal, View, Image, Text, Button, StyleSheet, Touchable, TouchableHighlight } from 'react-native'
+
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const EventInfo = props => {
     let popupModal = null
@@ -20,8 +22,23 @@ const EventInfo = props => {
         >
             <View style={styles.modalDiv}>
                 {popupModal}
-                <View>
-                    <Button title="Not Interested" color="purple" onPress={props.onEventDeleted}/>
+                <View>{/* button section start */}
+
+                    <View style={styles.notInterestedButton}>
+                    <Text>Not Interested?</Text>
+                        <TouchableHighlight onPress={props.onEventDeleted}> 
+                            <Icon size={90} name="event-busy" color="purple" />
+                        </TouchableHighlight>
+                    </View>
+
+                    <View style={styles.notInterestedButton}>
+                    <Text>Map it!</Text>
+                        <TouchableHighlight> 
+                            <Icon size={90} name="directions" color="purple" />
+                        </TouchableHighlight>
+                    </View>
+
+
                     <Button title="Close" color="green" onPress={props.onPageClosed}/>
                 </View>
             </View>
@@ -42,6 +59,9 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 30
 
+    },
+    notInterestedButton: {
+        alignItems: "center"
     }
 })
 
@@ -52,3 +72,6 @@ export default EventInfo
 // '../../images/sn.png'} />             <Text>{props.selected.spot}</Text>
 //        <View>                 <Button />                 <Button />
 //   </View>         </View>     </Modal>
+
+// button before trash 
+// <Button title="Not Interested" color="purple" onPress={props.onEventDeleted}/>
