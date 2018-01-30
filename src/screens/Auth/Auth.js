@@ -21,7 +21,7 @@ class AuthScreen extends Component {
              <View style={styles.container}>
                 
                     <Header>Signup to continue or click Login!</Header>
-                    <FilledButton color="teal" onPress={this.loginHandler}> Login </FilledButton>
+                    <FilledButton color="teal" onPress={() => alert(this.loginHandler)}> Login </FilledButton>
                     <View style={styles.inputContainer}>
                     <DefaultInput placeholder="enter your email here" />
                     <DefaultInput placeholder="password" />

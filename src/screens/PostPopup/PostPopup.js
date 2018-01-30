@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TextInput, Button, StyleSheet, ScrollView, Image } from 'react-native'
 import { connect } from 'react-redux'
 
-import SpotInput from '../../components/SpotInput/SpotInput'
+import DefaultInput from '../../components/UIComponents/DefaultInput'
 import { addPopup } from '../../store/actions/index'
+import GlobalText from '../../components/UIComponents/GlobalText'
+import Header from '../../components/UIComponents/Header'
+import placeholderImage from '../../images/sn.png'
 
 class PostPopupScreen extends Component{
     constructor(props) {
@@ -28,12 +31,52 @@ class PostPopupScreen extends Component{
 
     render() {
         return (
-            <View>
-                <SpotInput onSpotAdded={this.popupAddedHandler}/>
+            <ScrollView>
+            <View style={styles.container}>
+                <GlobalText><Header>Post an event in your area!</Header></GlobalText>
+                <View style={styles.placeholder}>
+                    <Image source={placeholderImage} style={styles.placeholderImage}/>
+                </View>
+                <View style={styles.button}>
+                <Button title='Add Photo' />
+                </View>
+                <View style={styles.placeholder}><Text>Map</Text></View>
+                <View style={styles.button}>
+                <Button title='Drop Pin' />
+                </View>
+                <DefaultInput placeholder='Popup Title' />
+                <DefaultInput placeholder='Start: MM/DD/YYYY' />
+                <DefaultInput placeholder='End: MM/DD/YYYY' />
+                <DefaultInput placeholder='Web/Info link:' />
+                <View style={styles.button}>
+                <Button title='Post Popup!' />
+                </View>
             </View>
+            </ScrollView>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+        alignItems: 'center'
+    },
+    placeholder: {
+        borderWidth: 1,
+        borderColor: 'red',
+        backgroundColor: 'teal',
+        width: '80%',
+        height: 150
+    },
+    button: {
+        margin: 9
+    },
+    placeholderImage: {
+        width: '100%',
+        height: '100%'
+    }
+})
 
 const mapDispatchToProps = dispatch => {
     return {

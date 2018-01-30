@@ -2,7 +2,7 @@ import React from 'react'
 import { TouchableOpacity, Text, View, StyleSheet } from 'react-native'
 
 const FilledButton = props => (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onPress}>
         <View style={[styles.button, {backgroundColor: props.color}]}>
             <Text style={styles.white}>{props.children}</Text>
         </View>
