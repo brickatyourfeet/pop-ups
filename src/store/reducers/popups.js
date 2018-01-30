@@ -1,8 +1,7 @@
 import { ADD_POPUP, DELETE_POPUP, UNSELECT_POPUP, SELECT_POPUP } from '../actions/types'
 
 const initialState = {
-    popups: [],
-    selected: null
+    popups: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -22,21 +21,8 @@ const reducer = (state = initialState, action) => {
                 return {
                     ...state,
                     popups: state.popups.filter(spot => {
-                        return spot.key !== state.selected.key
-                      }),
-                      selected: null
-                }
-            case SELECT_POPUP:
-                return {
-                    ...state,
-                    selected: state.popups.find(popup => {
-                        return popup.key === action.popupKey
+                        return spot.key !== action.key
                       })
-                }
-            case UNSELECT_POPUP:
-                return {
-                    ...state,
-                    selected: null
                 }
         default:
             return state

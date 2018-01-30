@@ -1,4 +1,4 @@
-import { ADD_POPUP, DELETE_POPUP, SELECT_POPUP, UNSELECT_POPUP } from './types'
+import { ADD_POPUP, DELETE_POPUP } from './types'
 
 export const addPopup = (spot) => {
     return {
@@ -7,21 +7,9 @@ export const addPopup = (spot) => {
     }
 }
 
-export const deletePopup = () => {
+export const deletePopup = (key) => {
     return {
-        type: DELETE_POPUP
-    }
-}
-
-export const selectPopup = (key) => {
-    return {
-        type: SELECT_POPUP,
-        popupKey: key
-    }
-}
-
-export const unselectPopup = () => {
-    return {
-        type: UNSELECT_POPUP
+        type: DELETE_POPUP,
+        key: key
     }
 }

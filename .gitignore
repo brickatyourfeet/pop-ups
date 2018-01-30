@@ -12,6 +12,8 @@
 .env.test.local
 .env.production.local
 .DS_Store
+NotApp.js
+Not-Event.js
 
 npm-debug.log*
 yarn-debug.log*

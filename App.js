@@ -1,84 +1,28 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { connect } from 'react-redux'
+import { Navigation } from 'react-native-navigation'
+import { Provider } from 'react-redux'
 
-import SpotInput from './src/components/SpotInput/SpotInput'
-import EventList from './src/components/EventList/EventList'
-import EventInfo from './src/components/EventInfo/EventInfo'
-import { addPopup, selectPopup, deletePopup, unselectPopup } from './src/store/actions/index'
+import AuthScreen from './src/screens/Auth/Auth'
+import PostPopupScreen from './src/screens/PostPopup/PostPopup'
+import FindPopupScreen from './src/screens/FindPopup/FindPopup'
+import EventInfoScreen from './src/screens/EventInfo/EventInfo'
+import SideDrawer from './src/screens/SideDrawer/SideDrawer'
+import config from './src/store/config'
 
-class App extends React.Component {
+const store = config()
 
-//if no image is added for pop-up, just default to pop-up logo
-//will need form for beg time, end time, but list will only show title and pic
-  spotAddedHandler = spot => {
-    this.props.onAddPopup(spot)
-    console.log('spot')
-    console.log(spot)
-  }
+//new app registers screens and starts app with react native nav
 
-  spotSelectedHandler = key => {
-    this.props.onSelectPopup(key)
-  }
+Navigation.registerComponent('popups.AuthScreen', () => AuthScreen, store, Provider)
+Navigation.registerComponent('popups.FindPopupScreen', () => FindPopupScreen, store, Provider)
+Navigation.registerComponent('popups.PostPopupScreen', () => PostPopupScreen, store, Provider)
 
-  eventDeletedHandler = () => {
-    this.props.onDeletePopup()
-  }
+Navigation.registerComponent('popups.EventInfoScreen', () => EventInfoScreen, store, Provider)
 
-  pageClosedHandler = () => {
-    this.props.onUnselectPopup()
-  }
+Navigation.registerComponent('popups.SideDrawer', () => SideDrawer, store, Provider)
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <EventInfo 
-          selected={this.props.selected} 
-          onEventDeleted={this.eventDeletedHandler} 
-          onPageClosed={this.pageClosedHandler} 
-        />
-        <SpotInput onSpotAdded={this.spotAddedHandler} />
-        <EventList 
-          popups={this.props.popups} 
-          onEventSelected={this.spotSelectedHandler}
-        />
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 25,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'flex-start'
-  }
-  
-});
-
-const mapStateToProps = state => {
-  return {
-    popups: state.popups.popups,
-    selected: state.popups.selected
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onAddPopup: title => {
-      console.log(addPopup(title))
-      return dispatch(addPopup(title))
-    },
-    onDeletePopup: () => dispatch(deletePopup()),
-    onSelectPopup: key => dispatch(selectPopup(key)),
-    onUnselectPopup: () => dispatch(unselectPopup())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
-
-// modals for everything!  - they're just other pages!
-// redirect buttons for everything! map!
-// change styling for list items - add shadow and elevation
+Navigation.startSingleScreenApp({
+    screen: {
+        screen: "popups.AuthScreen",
+        title: "Login"
+    }
+})
