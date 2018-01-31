@@ -35,8 +35,18 @@ class PostPopupScreen extends Component{
         }
     }
 
-    popupAddedHandler = spot => {
-        this.props.onAddSpot(spot)
+    inputChangedHandler = wat => {
+        this.setState({
+            spot: wat
+        })
+    }
+
+    //check for valid times here
+    popupAddedHandler = () => {
+        if(this.state.spot.trim() !== ''){
+            this.props.onAddSpot(this.state.spot)
+        }
+        
     }
 
     render() {
@@ -46,9 +56,15 @@ class PostPopupScreen extends Component{
                 <GlobalText><Header>Post an event in your area!</Header></GlobalText>
                 <ImageSelector />
                 <DropPin />
-                <SpotInput />
+                <SpotInput 
+                spot={this.state.spot}
+                // start={this.state.start}
+                // end={this.state.end}
+                // info={this.state.info}
+                onChangeText={this.inputChangedHandler}
+                />
                 <View style={styles.button}>
-                <Button title='Post Popup!' />
+                <Button title='Post Popup!' onPress={this.popupAddedHandler}/>
                 </View>
             </View>
             </ScrollView>
@@ -79,7 +95,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddSpot: (spot) => dispatch(addPopup(spot))
+        onAddSpot: (popup) => dispatch(addPopup(popup))
     }
 }
 

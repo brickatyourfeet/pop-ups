@@ -1,5 +1,6 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+
 # expo
 .expo/
 
@@ -14,6 +15,7 @@
 .DS_Store
 NotApp.js
 Not-Event.js
+NotSpotInput.js
 
 npm-debug.log*
 yarn-debug.log*
