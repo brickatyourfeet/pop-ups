@@ -2,13 +2,23 @@ import React, { Component } from 'react'
 import { View, Text, TextInput, Button, StyleSheet, ScrollView, Image } from 'react-native'
 import { connect } from 'react-redux'
 
-import DefaultInput from '../../components/UIComponents/DefaultInput'
+import SpotInput from '../../components/SpotInput/SpotInput'
 import { addPopup } from '../../store/actions/index'
 import GlobalText from '../../components/UIComponents/GlobalText'
 import Header from '../../components/UIComponents/Header'
-import placeholderImage from '../../images/sn.png'
+import ImageSelector from '../../components/ImageSelector/ImageSelector'
+import DropPin from '../../components/DropPin/DropPin'
+
 
 class PostPopupScreen extends Component{
+    state = {
+        spot: '',
+        start: null,
+        end: null,
+        info: null
+
+    }
+
     constructor(props) {
         super(props)
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
@@ -34,20 +44,9 @@ class PostPopupScreen extends Component{
             <ScrollView>
             <View style={styles.container}>
                 <GlobalText><Header>Post an event in your area!</Header></GlobalText>
-                <View style={styles.placeholder}>
-                    <Image source={placeholderImage} style={styles.placeholderImage}/>
-                </View>
-                <View style={styles.button}>
-                <Button title='Add Photo' />
-                </View>
-                <View style={styles.placeholder}><Text>Map</Text></View>
-                <View style={styles.button}>
-                <Button title='Drop Pin' />
-                </View>
-                <DefaultInput placeholder='Popup Title' />
-                <DefaultInput placeholder='Start: MM/DD/YYYY' />
-                <DefaultInput placeholder='End: MM/DD/YYYY' />
-                <DefaultInput placeholder='Web/Info link:' />
+                <ImageSelector />
+                <DropPin />
+                <SpotInput />
                 <View style={styles.button}>
                 <Button title='Post Popup!' />
                 </View>
