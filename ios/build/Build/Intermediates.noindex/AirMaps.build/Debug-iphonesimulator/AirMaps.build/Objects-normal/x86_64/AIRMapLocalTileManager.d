@@ -1,0 +1,34 @@
+dependencies: \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native-maps/lib/ios/AirMaps/AIRMapLocalTileManager.m \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTPointerEvents.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTConvert+CoreLocation.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTEventDispatcher.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTViewManager.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/UIView+React.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTComponent.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native-maps/lib/ios/AirMaps/AIRMapMarker.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native-maps/lib/ios/AirMaps/AIRMapCallout.h \
+  /Users/kylebraden/galvanize/pop-ups/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTView.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native-maps/lib/ios/AirMaps/AIRMap.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native-maps/lib/ios/AirMaps/Callout/SMCalloutView.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native-maps/lib/ios/AirMaps/RCTConvert+AirMap.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native-maps/lib/ios/AirMaps/AIRMapLocalTile.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native-maps/lib/ios/AirMaps/AIRMapCoordinate.h \
+  /Users/kylebraden/galvanize/pop-ups/node_modules/react-native-maps/lib/ios/AirMaps/AIRMapLocalTileManager.h

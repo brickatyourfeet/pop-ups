@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/Users/kylebraden/galvanize/pop-ups/android/app/build/intermediates/res/merged/debug/layout/redbox_view.xml",
-        "source": "/Users/kylebraden/galvanize/pop-ups/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.50.3/res/layout/redbox_view.xml"
-    },
-    {
         "merged": "/Users/kylebraden/galvanize/pop-ups/android/app/build/intermediates/res/merged/debug/layout/bottom_navigation_small_item.xml",
         "source": "/Users/kylebraden/galvanize/pop-ups/android/app/build/intermediates/exploded-aar/com.aurelhubert/ahbottomnavigation/2.0.6/res/layout/bottom_navigation_small_item.xml"
+    },
+    {
+        "merged": "/Users/kylebraden/galvanize/pop-ups/android/app/build/intermediates/res/merged/debug/layout/redbox_view.xml",
+        "source": "/Users/kylebraden/galvanize/pop-ups/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.50.3/res/layout/redbox_view.xml"
     },
     {
         "merged": "/Users/kylebraden/galvanize/pop-ups/android/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
