@@ -35,10 +35,12 @@ class PostPopupScreen extends Component{
         }
     }
 
-    inputChangedHandler = wat => {
-        this.setState({
-            spot: wat
-        })
+    inputChangedHandler = key => {
+        return (value) => {
+            this.setState({
+                [key]: value
+            })
+        }
     }
 
     //check for valid times here
@@ -56,11 +58,12 @@ class PostPopupScreen extends Component{
                 <GlobalText><Header>Post an event in your area!</Header></GlobalText>
                 <ImageSelector />
                 <DropPin />
+                <Text>{ JSON.stringify(this.state) }</Text>
                 <SpotInput 
                 spot={this.state.spot}
-                // start={this.state.start}
-                // end={this.state.end}
-                // info={this.state.info}
+                start={this.state.start}
+                end={this.state.end}
+                info={this.state.info}
                 onChangeText={this.inputChangedHandler}
                 />
                 <View style={styles.button}>

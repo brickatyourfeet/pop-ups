@@ -13,3 +13,5 @@ export const deletePopup = (key) => {
         key: key
     }
 }
+
+//addPopup will take in an object with {spot, start, end, info}  ??

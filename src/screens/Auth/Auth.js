@@ -7,14 +7,89 @@ import Header from '../../components/UIComponents/Header'
 import GlobalText from '../../components/UIComponents/GlobalText'
 import FilledButton from '../../components/UIComponents/FilledButton'
 import backgroundImage from '../../images/background3.png'
+import validate from '../../utility/validation'
+import { connect } from 'react-redux'
+import { submitAttempt } from '../../store/actions/index'
 
 class AuthScreen extends Component {
+    state = {
+        controls: {
+            email: {
+                value: '',
+                valid: false,
+                validationRules: {
+                    isEmail: true
+                },
+                touched: false
+            },
+            password: {
+                value: '',
+                valid: false,
+                validationRules: {
+                    minLength: 6
+                },
+                touched: false
+            },
+            confirmPassword: {
+                value: '',
+                valid: false,
+                validationRules: {
+                    equalTo: 'password'
+                },
+                touched: false
+            }
+        }
+    }
+    
     loginHandler = () => {
+        const authData = {
+            email: this.state.controls.email.value,
+            password: this.state.controls.password.value
+        }
+        this.props.onLogin()
         startMainTabApp()
     }
-    //keep in mind popups logo will go on top of log in form
-    //flex login container to the bottom
-    //move around view to figure out where signup and login go
+
+    updateInputState = (key, value) => {
+        let connectedValue = {}
+        if (this.state.controls[key].validationRules.equalTo){
+            const equalControl = this.state.controls[key].validationRules.equalTo
+            const equalValue = this.state.controls[equalControl].value
+            connectedValue = {
+                ...connectedValue,
+                equalTo: equalValue
+            }
+        }
+        if (key === 'password'){
+            connectedValue = {
+                ...connectedValue,
+                equalTo: value
+            }
+        }
+        this.setState(prevState => {
+            return {
+                controls: {
+                    ...prevState.controls,
+                    confirmPassword: {
+                        ...prevState.controls.confirmPassword,
+                        valid: 
+                            key === 'password' 
+                                ? validate(prevState.controls.confirmPassword.value,
+                                     prevState.controls.confirmPassword.validationRules, 
+                                     connectedValue) 
+                                : prevState.controls.confirmPassword.valid
+                    },
+                    [key]: {
+                        ...prevState.controls[key],
+                        value: value,
+                        valid: validate(value, prevState.controls[key].validationRules, connectedValue),
+                        touched: true
+                    }
+                }
+            }
+        })
+    }
+
     render () {
          return (
             <ImageBackground source={backgroundImage} style={styles.background}>
@@ -23,11 +98,37 @@ class AuthScreen extends Component {
                     <Header>Signup to continue or click Login!</Header>
                     <FilledButton color="teal" onPress={() => alert(this.loginHandler)}> Login </FilledButton>
                     <View style={styles.inputContainer}>
-                    <DefaultInput placeholder="enter your email here" />
-                    <DefaultInput placeholder="password" />
-                    <DefaultInput placeholder="confirm password" />
+                    <DefaultInput 
+                    placeholder="enter your email here" 
+                    value={this.state.controls.value}
+                    onChangeText={(inputValue) => this.updateInputState('email', inputValue)}
+                    valid={this.state.controls.email.valid}
+                    touched={this.state.controls.email.touched}
+                    />
+                    <DefaultInput 
+                    placeholder="password" 
+                    value={this.state.controls.password.value}
+                    onChangeText={(inputValue) => this.updateInputState('password', inputValue)}
+                    valid={this.state.controls.password.valid}
+                    touched={this.state.controls.password.touched}
+                    />
+                    <DefaultInput 
+                    placeholder="confirm password" 
+                    value={this.state.controls.confirmPassword.value}
+                    onChangeText={(inputValue) => this.updateInputState('confirmPassword', inputValue)}
+                    valid={this.state.controls.confirmPassword.valid}
+                    touched={this.state.controls.confirmPassword.touched}
+                    />
                     </View>
-                    <FilledButton color="teal" onPress={this.loginHandler}> Submit Sign Up! </FilledButton>
+                    <FilledButton 
+                    color="teal" 
+                    onPress={this.loginHandler}
+                    disabled={!this.state.controls.confirmPassword.valid ||
+                        !this.state.controls.password.valid || 
+                        !this.state.controls.email.valid}
+                    >
+                     Submit Sign Up! 
+                     </FilledButton>
                 
              </View>
              </ImageBackground>
@@ -55,4 +156,10 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AuthScreen
+const mapDispatchToProps = dispatch => {
+    return {
+        onLogin: (authData) => dispatch(submitAttempt(authData))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AuthScreen)

@@ -1,13 +1,29 @@
 import React from 'react'
-import { TouchableOpacity, Text, View, StyleSheet } from 'react-native'
+import { Platform, TouchableNativeFeedback, TouchableOpacity, Text, View, StyleSheet } from 'react-native'
 
-const FilledButton = props => (
-    <TouchableOpacity onPress={props.onPress}>
-        <View style={[styles.button, {backgroundColor: props.color}]}>
+const FilledButton = props => {
+    const content = (
+        <View style={[styles.button, {backgroundColor: props.color}, props.disabled ? styles.disabled : null]}>
             <Text style={styles.white}>{props.children}</Text>
         </View>
-    </TouchableOpacity>
-)
+    )
+    if(props.disabled){
+        return content
+    }
+    if(Platform.OS === 'android'){
+        return (
+            <TouchableNativeFeedback onPress={props.onPress}>
+                {content}
+            </TouchableNativeFeedback>
+        )
+    }
+    return (
+        <TouchableOpacity onPress={props.onPress}>
+            {content}
+        </TouchableOpacity>
+    )
+   
+}
 
 const styles = StyleSheet.create({
     button: {
@@ -19,6 +35,10 @@ const styles = StyleSheet.create({
     white: {
         color: 'white',
         fontWeight: 'bold'
+    },
+    disabled: {
+        backgroundColor: 'lightgrey',
+        borderColor: 'grey'
     }
 })
 

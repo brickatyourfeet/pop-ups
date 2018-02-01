@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions, StyleSheet }  from 'react-native'
+import { View, Text, Dimensions, StyleSheet, TouchableOpacity }  from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 class SideDrawer extends Component {
     render () {
@@ -10,7 +11,13 @@ class SideDrawer extends Component {
                 {width: Dimensions.get('window').width * 0.82}
             ]}
             >
-                <Text> a drawer </Text>
+                <TouchableOpacity>
+                <View style={styles.drawerItem}>
+                <Icon name='cancel' size={30} color='teal' style={styles.drawerItemIcon} />
+                <Text> Logout </Text>
+                </View>
+                </TouchableOpacity>
+                
             </View>
         )
     }
@@ -18,10 +25,17 @@ class SideDrawer extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 20,
+        marginTop: 40,
         backgroundColor: 'white',
         flex: 1
-
+    },
+    drawerItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 8
+    },
+    drawerItemIcon: {
+        marginRight: 5
     }
 })
 
