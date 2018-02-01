@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Button, TextInput, StyleSheet, ImageBackground } from 'react-native'
+import { Text, View, Button, TextInput, StyleSheet, ImageBackground, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import launchIndexTabs from '../MainTabs/startMainTabApp'
 import startMainTabApp from '../MainTabs/startMainTabApp';
 import DefaultInput from '../../components/UIComponents/DefaultInput'
@@ -13,6 +13,7 @@ import { submitAttempt } from '../../store/actions/index'
 
 class AuthScreen extends Component {
     state = {
+        authMode: 'login',
         controls: {
             email: {
                 value: '',
@@ -39,6 +40,14 @@ class AuthScreen extends Component {
                 touched: false
             }
         }
+    }
+
+    loginToggleHandler = () => {
+        this.setState(prevState => {
+            return {
+                authMode: prevState.authMode === 'login' ? 'signup' : 'login'
+            }
+        })
     }
     
     loginHandler = () => {
@@ -91,12 +100,32 @@ class AuthScreen extends Component {
     }
 
     render () {
+        let confirmPasswordControl = null
+
+        if (this.state.authMode === 'signup'){
+            confirmPasswordControl = (
+                <DefaultInput 
+                    placeholder="confirm password" 
+                    value={this.state.controls.confirmPassword.value}
+                    onChangeText={(inputValue) => this.updateInputState('confirmPassword', inputValue)}
+                    valid={this.state.controls.confirmPassword.valid}
+                    touched={this.state.controls.confirmPassword.touched}
+                    secureTextEntry
+                    />
+            )
+        }
          return (
             <ImageBackground source={backgroundImage} style={styles.background}>
-             <View style={styles.container}>
+             <KeyboardAvoidingView style={styles.container}
+             behavior='padding'
+             >
                 
                     <Header>Signup to continue or click Login!</Header>
-                    <FilledButton color="teal" onPress={() => alert(this.loginHandler)}> Login </FilledButton>
+                    <FilledButton color="teal" 
+                    onPress={this.loginToggleHandler}> 
+                    Go To {this.state.authMode === 'login' ? 'signup': 'login'}
+                    </FilledButton>
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.inputContainer}>
                     <DefaultInput 
                     placeholder="enter your email here" 
@@ -104,6 +133,9 @@ class AuthScreen extends Component {
                     onChangeText={(inputValue) => this.updateInputState('email', inputValue)}
                     valid={this.state.controls.email.valid}
                     touched={this.state.controls.email.touched}
+                    autoCapitalize='none'
+                    autoCorrect={false}
+                    keyboardType='email-address'
                     />
                     <DefaultInput 
                     placeholder="password" 
@@ -111,26 +143,22 @@ class AuthScreen extends Component {
                     onChangeText={(inputValue) => this.updateInputState('password', inputValue)}
                     valid={this.state.controls.password.valid}
                     touched={this.state.controls.password.touched}
+                    secureTextEntry
                     />
-                    <DefaultInput 
-                    placeholder="confirm password" 
-                    value={this.state.controls.confirmPassword.value}
-                    onChangeText={(inputValue) => this.updateInputState('confirmPassword', inputValue)}
-                    valid={this.state.controls.confirmPassword.valid}
-                    touched={this.state.controls.confirmPassword.touched}
-                    />
+                    {confirmPasswordControl}
                     </View>
+                    </TouchableWithoutFeedback>
                     <FilledButton 
                     color="teal" 
                     onPress={this.loginHandler}
-                    disabled={!this.state.controls.confirmPassword.valid ||
+                    disabled={!this.state.controls.confirmPassword.valid && this.state.authMode === 'signup' ||
                         !this.state.controls.password.valid || 
                         !this.state.controls.email.valid}
                     >
                      Submit Sign Up! 
                      </FilledButton>
                 
-             </View>
+             </KeyboardAvoidingView>
              </ImageBackground>
          ) 
     }
