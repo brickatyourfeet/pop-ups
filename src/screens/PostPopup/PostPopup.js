@@ -3,6 +3,9 @@ import { View, Text, TextInput, Button, StyleSheet, ScrollView, Image } from 're
 import { connect } from 'react-redux'
 
 import SpotInput from '../../components/SpotInput/SpotInput'
+import StartInput from '../../components/StartInput/StartInput'
+import EndInput from '../../components/EndInput/EndInput'
+import InfoInput from '../../components/InfoInput/InfoInput'
 import { addPopup } from '../../store/actions/index'
 import GlobalText from '../../components/UIComponents/GlobalText'
 import Header from '../../components/UIComponents/Header'
@@ -12,11 +15,20 @@ import DropPin from '../../components/DropPin/DropPin'
 
 class PostPopupScreen extends Component{
     state = {
-        spot: '',
-        start: null,
-        end: null,
-        info: null
-
+       controls: {
+           spot: {
+               value: ''
+           },
+           start: {
+               value: ''
+           },
+           end: {
+               value: ''
+           },
+           info: {
+               value: ''
+           }
+       }
     }
 
     constructor(props) {
@@ -35,6 +47,7 @@ class PostPopupScreen extends Component{
         }
     }
 
+    //not in use
     inputChangedHandler = key => {
         return (value) => {
             this.setState({
@@ -43,10 +56,66 @@ class PostPopupScreen extends Component{
         }
     }
 
+    spotChangedHandler = val => {
+        this.setState(prevState => {
+            return {
+                controls: {
+                    ...prevState.controls,
+                    spot: {
+                        ...prevState.controls.spot,
+                        value: val
+                    }
+                }
+            }
+        })
+    }
+
+    startChangedHandler = val => {
+        this.setState(prevState => {
+            return {
+                controls: {
+                    ...prevState.controls,
+                    start: {
+                        ...prevState.controls.start,
+                        value: val
+                    }
+                }
+            }
+        })
+    }
+
+    endChangedHandler = val => {
+        this.setState(prevState => {
+            return {
+                controls: {
+                    ...prevState.controls,
+                    end: {
+                        ...prevState.controls.end,
+                        value: val
+                    }
+                }
+            }
+        })
+    }
+
+    infoChangedHandler = val => {
+        this.setState(prevState => {
+            return {
+                controls: {
+                    ...prevState.controls,
+                    info: {
+                        ...prevState.controls.info,
+                        value: val
+                    }
+                }
+            }
+        })
+    }
+
     //check for valid times here
     popupAddedHandler = () => {
-        if(this.state.spot.trim() !== ''){
-            this.props.onAddSpot(this.state.spot)
+        if(this.state.controls.spot.value.trim() !== ''){
+            this.props.onAddSpot(this.state.controls.spot.value)
         }
         
     }
@@ -60,11 +129,20 @@ class PostPopupScreen extends Component{
                 <DropPin />
                 <Text>{ JSON.stringify(this.state) }</Text>
                 <SpotInput 
-                spot={this.state.spot}
-                start={this.state.start}
-                end={this.state.end}
-                info={this.state.info}
-                onChangeText={this.inputChangedHandler}
+                spot={this.state.controls.spot.value}
+                onChangeText={this.spotChangedHandler}
+                />
+                <StartInput 
+                start={this.state.controls.start.value}
+                onChangeText={this.startChangedHandler}
+                />
+                <EndInput 
+                end={this.state.controls.end.value}
+                onChangeText={this.endChangedHandler}
+                />
+                <InfoInput 
+                info={this.state.controls.info.value}
+                onChangeText={this.infoChangedHandler}
                 />
                 <View style={styles.button}>
                 <Button title='Post Popup!' onPress={this.popupAddedHandler}/>
