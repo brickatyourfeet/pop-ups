@@ -112,12 +112,24 @@ class PostPopupScreen extends Component{
         })
     }
 
+    locationPickedHandler = location => {
+        this.setState(prevState => {
+            return {
+                controls: {
+                    ...prevState.controls,
+                    location: {
+                        value: location,
+                        valid: true
+                    }
+                }
+            }
+        })
+    }
+
+
     //check for valid times here
     popupAddedHandler = () => {
-        if(this.state.controls.spot.value.trim() !== ''){
             this.props.onAddSpot(this.state.controls.spot.value)
-        }
-        
     }
 
     render() {
@@ -126,7 +138,7 @@ class PostPopupScreen extends Component{
             <View style={styles.container}>
                 <GlobalText><Header>Post an event in your area!</Header></GlobalText>
                 <ImageSelector />
-                <DropPin />
+                <DropPin onLocationPick={this.locationPickedHandler}/>
                 <Text>{ JSON.stringify(this.state) }</Text>
                 <SpotInput 
                 spot={this.state.controls.spot.value}
@@ -145,7 +157,10 @@ class PostPopupScreen extends Component{
                 onChangeText={this.infoChangedHandler}
                 />
                 <View style={styles.button}>
-                <Button title='Post Popup!' onPress={this.popupAddedHandler}/>
+                <Button title='Post Popup!' 
+                onPress={this.popupAddedHandler}
+                disabled={!this.state.controls.spot === '' || !this.state.controls.location}
+                />
                 </View>
             </View>
             </ScrollView>

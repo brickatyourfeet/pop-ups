@@ -31,6 +31,10 @@ class DropPin extends Component {
                 pinDropped: true
             }
         })
+        this.props.onLocationPick({
+            latitude: coords.latitude,
+            longitude: coords.longitude
+        })
     }
 
     getLocationHandler = () => {
