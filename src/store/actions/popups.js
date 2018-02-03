@@ -1,9 +1,13 @@
 import { ADD_POPUP, DELETE_POPUP } from './types'
 
-export const addPopup = (spot) => {
+export const addPopup = (spot, location, start, end, info) => {
     return {
         type: ADD_POPUP,
-        spot: spot
+        spot: spot,
+        location: location,
+        start: start,
+        end: end,
+        info: info
     }
 }
 

@@ -19,6 +19,10 @@ class PostPopupScreen extends Component{
            spot: {
                value: ''
            },
+           location: {
+                value: null,
+                valid: false
+           },
            start: {
                value: ''
            },
@@ -129,7 +133,13 @@ class PostPopupScreen extends Component{
 
     //check for valid times here
     popupAddedHandler = () => {
-            this.props.onAddSpot(this.state.controls.spot.value)
+            this.props.onAddSpot(
+                this.state.controls.spot.value,
+                this.state.controls.location.value,
+                this.state.controls.start.value,
+                this.state.controls.end.value,
+                this.state.controls.info.value
+            )
     }
 
     render() {
@@ -191,7 +201,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddSpot: (popup) => dispatch(addPopup(popup))
+        onAddSpot: (spot, location, start, end, info) => dispatch(addPopup(spot, location, start, end, info))
     }
 }
 

@@ -14,7 +14,11 @@ const reducer = (state = initialState, action) => {
                         title: action.spot,
                         image: {
                           uri: 'https://d30y9cdsu7xlg0.cloudfront.net/png/50592-200.png'
-                        }
+                        },
+                        location: action.location,
+                        start: action.start,
+                        end: action.end,
+                        info: action.info
                       })
                 }
             case DELETE_POPUP:
