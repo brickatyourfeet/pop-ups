@@ -1,4 +1,5 @@
-import { createStore, combineReducers, compose } from 'redux'
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
 import bigReducer from './reducers/popups'
 
@@ -13,7 +14,7 @@ if(__DEV__) {
 }
 
 const config = () => {
-    return createStore(rootReducer, composeEnhancers())
+    return createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
     //adding this guy lets us include 'enhancers' or middleware & redux devtools
 }
 

@@ -22,7 +22,7 @@ class ImageSelector extends Component {
                         uri: res.uri
                     }
                 })
-                this.props.onImageSelected({uri: res.uri})
+                this.props.onImageSelected({uri: res.uri}) //, base64: res.data
             }
         })
     }
