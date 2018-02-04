@@ -31,6 +31,10 @@ class PostPopupScreen extends Component{
            },
            info: {
                value: ''
+           },
+           image: {
+               value: null,
+               valid: false
            }
        }
     }
@@ -130,6 +134,20 @@ class PostPopupScreen extends Component{
         })
     }
 
+    imageSelectedHandler = image => {
+        this.setState(prevState => {
+            return {
+                controls: {
+                    ...prevState.controls,
+                    image: {
+                        value: image,
+                        valid: true
+                    }
+                }
+            }
+        })
+    }
+
 
     //check for valid times here
     popupAddedHandler = () => {
@@ -138,7 +156,8 @@ class PostPopupScreen extends Component{
                 this.state.controls.location.value,
                 this.state.controls.start.value,
                 this.state.controls.end.value,
-                this.state.controls.info.value
+                this.state.controls.info.value,
+                this.state.controls.image.value
             )
     }
 
@@ -147,7 +166,7 @@ class PostPopupScreen extends Component{
             <ScrollView>
             <View style={styles.container}>
                 <GlobalText><Header>Post an event in your area!</Header></GlobalText>
-                <ImageSelector />
+                <ImageSelector onImageSelected={this.imageSelectedHandler}/>
                 <DropPin onLocationPick={this.locationPickedHandler}/>
                 <Text>{ JSON.stringify(this.state) }</Text>
                 <SpotInput 
@@ -201,7 +220,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddSpot: (spot, location, start, end, info) => dispatch(addPopup(spot, location, start, end, info))
+        onAddSpot: (spot, location, start, end, info, image) => dispatch(addPopup(spot, location, start, end, info, image))
     }
 }
 

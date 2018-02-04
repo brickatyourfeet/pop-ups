@@ -13,7 +13,7 @@ const reducer = (state = initialState, action) => {
                         key: Math.random(),
                         title: action.spot,
                         image: {
-                          uri: 'https://d30y9cdsu7xlg0.cloudfront.net/png/50592-200.png'
+                          uri: action.image.uri
                         },
                         location: action.location,
                         start: action.start,
