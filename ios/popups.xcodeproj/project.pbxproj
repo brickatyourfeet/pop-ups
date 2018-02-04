@@ -50,6 +50,7 @@
 		A88C19EC201A863100F2851D /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A88C19E1201A863000F2851D /* Foundation.ttf */; };
 		A88C19ED201A863100F2851D /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A88C19E2201A863000F2851D /* Zocial.ttf */; };
 		A88C19F4201BB55400F2851D /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A88C19F3201BB52700F2851D /* libReactNativeNavigation.a */; };
+		A8D6742E20268E8700E5A3F1 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D6742C20268E5700E5A3F1 /* libRNImagePicker.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 /* End PBXBuildFile section */
 
@@ -327,6 +328,13 @@
 			remoteGlobalIDString = 3DBE0D0D1F3B181C0099AA32;
 			remoteInfo = "fishhook-tvOS";
 		};
+		A8D6742B20268E5700E5A3F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A8D6740220268E5700E5A3F1 /* RNImagePicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
+			remoteInfo = RNImagePicker;
+		};
 		ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -375,6 +383,7 @@
 		A88C19E1201A863000F2851D /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		A88C19E2201A863000F2851D /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		A88C19EE201BB52700F2851D /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
+		A8D6740220268E5700E5A3F1 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -391,6 +400,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8D6742E20268E8700E5A3F1 /* libRNImagePicker.a in Frameworks */,
 				A86B6CBC2023A05B00EC469D /* libAirMaps.a in Frameworks */,
 				A88C19F4201BB55400F2851D /* libReactNativeNavigation.a in Frameworks */,
 				A88C19D7201A851B00F2851D /* libRNVectorIcons.a in Frameworks */,
@@ -517,6 +527,7 @@
 		13B07FAE1A68108700A75B9A /* popups */ = {
 			isa = PBXGroup;
 			children = (
+				A8D6740220268E5700E5A3F1 /* RNImagePicker.xcodeproj */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -661,6 +672,14 @@
 			isa = PBXGroup;
 			children = (
 				A88C19F3201BB52700F2851D /* libReactNativeNavigation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A8D6740320268E5700E5A3F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A8D6742C20268E5700E5A3F1 /* libRNImagePicker.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -843,6 +862,10 @@
 				{
 					ProductGroup = A88C19EF201BB52700F2851D /* Products */;
 					ProjectRef = A88C19EE201BB52700F2851D /* ReactNativeNavigation.xcodeproj */;
+				},
+				{
+					ProductGroup = A8D6740320268E5700E5A3F1 /* Products */;
+					ProjectRef = A8D6740220268E5700E5A3F1 /* RNImagePicker.xcodeproj */;
 				},
 				{
 					ProductGroup = A88C19A2201A84E300F2851D /* Products */;
@@ -1117,6 +1140,13 @@
 			fileType = archive.ar;
 			path = "libfishhook-tvOS.a";
 			remoteRef = A8B5E6952016810A00FB0741 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A8D6742C20268E5700E5A3F1 /* libRNImagePicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNImagePicker.a;
+			remoteRef = A8D6742B20268E5700E5A3F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */ = {
