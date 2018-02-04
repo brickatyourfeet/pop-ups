@@ -27,6 +27,7 @@ class EventInfo extends Component {
     render() {
         return (
             <ScrollView>
+            
             <MapView initialRegion={{
                 ...this.props.selected.location,
                 latitudeDelta: 0.0122,
@@ -39,29 +40,17 @@ class EventInfo extends Component {
             />
             
             </MapView>
+
             
             
             <View style={styles.container}>
-                <View>
-                    <Image source={this.props.selected.image} style={styles.eventPic}/>
-                    <Text style={styles.title}>{this.props.selected.title}</Text>
-                </View>
 
+                <View style={styles.filler}>
+                <Text>{this.props.selected.start}</Text>
+                <Text>{this.props.selected.end}</Text>
+                <Text>{this.props.selected.info}</Text>
+                </View>                
 
-                <View>
-                    <MapView initialRegion={{
-                        ...this.props.selected.location,
-                        latitudeDelta: 0.0122,
-                        longitudeDelta: Dimensions.get('window').width / Dimensions.get('window').height * 0.0122
-                    }}
-                    style={styles.map}
-                    >
-                    <MapView.Marker
-                    coordinate={this.props.selected.location}
-                    />
-                    
-                    </MapView>
-                </View>
 
 
                 <View>{/* button section start */}
@@ -97,6 +86,10 @@ class EventInfo extends Component {
             </View>
             <Text>{this.props.selected.location.longitude}</Text>
             <Text style={styles.title}>{this.props.selected.title}</Text>
+            <View>
+                    <Image source={this.props.selected.image} style={styles.eventPic}/>
+                    <Text style={styles.title}>{this.props.selected.title}</Text>
+                </View>
             </ScrollView>
         )
     }
@@ -105,13 +98,19 @@ class EventInfo extends Component {
 const styles = StyleSheet.create({
     container: {
         margin: 20,
-        flex: 1
+        flex: 1,
+        flexDirection: 'column'
     },
     flexContainer: {
         flex: 1
     },
     infoContainer: {
         flex: 2
+    },
+    filler: {
+
+        width: "98%",
+        height: "98%"
     },
     eventPic: {
         width: "98%",
