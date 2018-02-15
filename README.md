@@ -2,6 +2,6 @@
 
 ## Pop-Up! Seattle
 
-* [Updating to New Releases](#updating-to-new-releases)
+* Available soon on iOS and Android
 
-![Alt text](relative/path/to/img.jpg?raw=true "Title")
+![Alt text](images/post.png?raw=true "Post")
