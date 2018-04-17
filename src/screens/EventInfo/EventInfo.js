@@ -40,7 +40,7 @@ class EventInfo extends Component {
             />
             
             </MapView>
-
+            
             
             
             <View style={styles.container}>
@@ -49,6 +49,7 @@ class EventInfo extends Component {
                 <Text>{this.props.selected.start}</Text>
                 <Text>{this.props.selected.end}</Text>
                 <Text>{this.props.selected.info}</Text>
+                
                 </View>                
 
 
@@ -71,6 +72,7 @@ class EventInfo extends Component {
                 </View>
             </View>
             <View>
+            {/*
             <MapView initialRegion={{
                 ...this.props.selected.location,
                 latitudeDelta: 0.0122,
@@ -83,6 +85,7 @@ class EventInfo extends Component {
             />
             
             </MapView>
+        */}
             </View>
             <Text>{this.props.selected.location.longitude}</Text>
             <Text style={styles.title}>{this.props.selected.title}</Text>
@@ -90,6 +93,7 @@ class EventInfo extends Component {
                     <Image source={this.props.selected.image} style={styles.eventPic}/>
                     <Text style={styles.title}>{this.props.selected.title}</Text>
                 </View>
+
             </ScrollView>
         )
     }

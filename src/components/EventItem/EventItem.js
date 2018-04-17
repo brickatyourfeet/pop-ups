@@ -6,7 +6,7 @@ const EventItem = (props) => (
     <TouchableHighlight onPress={props.onEventTouched}>
     <View style = {styles.eventItem} >
     <Image resizeMode="cover" source={props.dummyImage} style={styles.dummyImage}/>
-    <Text>{props.spot}</Text>
+    <Text style={styles.title}>{props.spot}</Text>
     </View>
     </TouchableHighlight>
 
@@ -14,16 +14,20 @@ const EventItem = (props) => (
 
 const styles = StyleSheet.create({
     eventItem: {
-        width: '80%',
+        width: '90%',
         padding: 5,
-        backgroundColor: "#fcdede",
+        backgroundColor: "orange",
         margin: 4,
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
+        borderRadius: 30
+    },
+    title: {
+        fontWeight: 'bold'
     },
     dummyImage: {
         marginRight: 5,
-        height: 30,
+        height: 50,
         width: 30,
 
     }

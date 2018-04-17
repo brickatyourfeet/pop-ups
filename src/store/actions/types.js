@@ -1,4 +1,6 @@
-export const ADD_POPUP = 'ADD_POPUP'
-export const DELETE_POPUP = 'DELETE_POPUP'
+export const SET_POPUPS = 'SET_POPUPS' 
 
 export const SUBMIT_ATTEMPT = 'SUBMIT_ATTEMPT'
+
+export const UI_START_LOADING = 'UI_START_LOADING'
+export const UI_STOP_LOADING = 'UI_STOP_LOADING'

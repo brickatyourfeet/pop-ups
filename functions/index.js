@@ -25,8 +25,11 @@ exports.storeImage = functions.https.onRequest((request, response) => {
             uploadType: 'media',
             destination: '/popups/' + uuid + '.jpg',
             metadata: {
-                contentType: 'image/jpeg',
-                firebaseStorageDownloadTokens: uuid
+                metadata: {
+                    contentType: 'image/jpeg',
+                    firebaseStorageDownloadTokens: uuid
+                }
+                
             }
         }, (err, file) => {
             if (!err){

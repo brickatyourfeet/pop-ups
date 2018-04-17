@@ -6,7 +6,7 @@ import DefaultInput from '../../components/UIComponents/DefaultInput'
 import Header from '../../components/UIComponents/Header'
 import GlobalText from '../../components/UIComponents/GlobalText'
 import FilledButton from '../../components/UIComponents/FilledButton'
-import backgroundImage from '../../images/background3.png'
+import backgroundImage from '../../images/background9.png'
 import validate from '../../utility/validation'
 import { connect } from 'react-redux'
 import { submitAttempt } from '../../store/actions/index'
@@ -120,10 +120,10 @@ class AuthScreen extends Component {
              behavior='padding'
              >
                 
-                    <Header>Signup to continue or click Login!</Header>
+                    <Header></Header>
                     <FilledButton color="teal" 
                     onPress={this.loginToggleHandler}> 
-                    Go To {this.state.authMode === 'login' ? 'signup': 'login'}
+                    Switch to {this.state.authMode === 'login' ? 'signup': 'login'}
                     </FilledButton>
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.inputContainer}>
@@ -155,7 +155,7 @@ class AuthScreen extends Component {
                         !this.state.controls.password.valid || 
                         !this.state.controls.email.valid}
                     >
-                     Submit Sign Up! 
+                     Submit
                      </FilledButton>
                 
              </KeyboardAvoidingView>

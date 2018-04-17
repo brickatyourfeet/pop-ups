@@ -4,6 +4,7 @@ import { Image, View, Button, StyleSheet } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 
 import placeholderImage from '../../images/sn.png'
+import camera from '../../images/camera.png'
 
 class ImageSelector extends Component {
     state = {
@@ -22,7 +23,7 @@ class ImageSelector extends Component {
                         uri: res.uri
                     }
                 })
-                this.props.onImageSelected({uri: res.uri}) //, base64: res.data
+                this.props.onImageSelected({uri: res.uri}) //2nd param , base64: res.data
             }
         })
     }
@@ -31,7 +32,7 @@ class ImageSelector extends Component {
         return(
             <View style={styles.container}>
             <View style={styles.placeholder}>
-                <Image source={this.state.selectedPhoto} style={styles.placeholderImage}/>
+                <Image source={this.state.selectedPhoto ? this.state.selectedPhoto : camera} style={styles.placeholderImage}/>
             </View>
             <View style={styles.button}>
                 <Button title='Add Photo' onPress={this.selectImageHandler}/>
@@ -47,9 +48,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     placeholder: {
-        borderWidth: 1,
-        borderColor: 'red',
-        backgroundColor: 'teal',
         width: '80%',
         height: 150
     },

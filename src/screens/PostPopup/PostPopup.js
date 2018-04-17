@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, Button, StyleSheet, ScrollView, Image } from 'react-native'
+import { ActivityIndicator, View, Text, TextInput, Button, StyleSheet, ScrollView, Image } from 'react-native'
 import { connect } from 'react-redux'
 
 import SpotInput from '../../components/SpotInput/SpotInput'
@@ -147,8 +147,8 @@ class PostPopupScreen extends Component{
             }
         })
     }
-
-
+    //to monitor state - 
+    //in render - <Text>{ JSON.stringify(this.state) }</Text>
     //check for valid times here
     popupAddedHandler = () => {
             this.props.onAddSpot(
@@ -162,13 +162,22 @@ class PostPopupScreen extends Component{
     }
 
     render() {
+        let submitButton = (
+            <Button title='Post Popup!' 
+                onPress={this.popupAddedHandler}
+                disabled={!this.state.controls.spot === '' || !this.state.controls.location}
+                />
+        )
+        if (this.props.isLoading){
+            submitButton = <ActivityIndicator />
+        }
         return (
             <ScrollView>
             <View style={styles.container}>
                 <GlobalText><Header>Post an event in your area!</Header></GlobalText>
                 <ImageSelector onImageSelected={this.imageSelectedHandler}/>
                 <DropPin onLocationPick={this.locationPickedHandler}/>
-                <Text>{ JSON.stringify(this.state) }</Text>
+                
                 <SpotInput 
                 spot={this.state.controls.spot.value}
                 onChangeText={this.spotChangedHandler}
@@ -184,12 +193,12 @@ class PostPopupScreen extends Component{
                 <InfoInput 
                 info={this.state.controls.info.value}
                 onChangeText={this.infoChangedHandler}
+                autoCorrect={false}
                 />
                 <View style={styles.button}>
-                <Button title='Post Popup!' 
-                onPress={this.popupAddedHandler}
-                disabled={!this.state.controls.spot === '' || !this.state.controls.location}
-                />
+
+                {submitButton}
+
                 </View>
             </View>
             </ScrollView>
@@ -218,10 +227,16 @@ const styles = StyleSheet.create({
     }
 })
 
+const mapStateToProps = state => {
+    return {
+        isLoading: state.ui.isLoading
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         onAddSpot: (spot, location, start, end, info, image) => dispatch(addPopup(spot, location, start, end, info, image))
     }
 }
 
-export default connect(null, mapDispatchToProps)(PostPopupScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(PostPopupScreen)

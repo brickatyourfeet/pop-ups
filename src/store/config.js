@@ -2,9 +2,11 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 
 import bigReducer from './reducers/popups'
+import uiReducer from './reducers/ui'
 
 const rootReducer = combineReducers({
-    popups: bigReducer
+    popups: bigReducer,
+    ui: uiReducer
 })
 
 let composeEnhancers = compose

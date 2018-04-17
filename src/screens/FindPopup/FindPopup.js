@@ -3,6 +3,7 @@ import { Animated, View, Text, StyleSheet, TouchableOpacity } from 'react-native
 import { connect } from 'react-redux'
 
 import EventList from '../../components/EventList/EventList'
+import { getPopups } from '../../store/actions/index'
 
 class FindPopupScreen extends Component{
     constructor(props) {
@@ -14,6 +15,10 @@ class FindPopupScreen extends Component{
         popupsPopulated: false,
         removeAnimation: new Animated.Value(1),
         listAnimation: new Animated.Value(0)
+    }
+
+    componentDidMount() {
+        this.props.onLoadPopups()
     }
 
     onNavigatorEvent = e => {
@@ -121,4 +126,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(FindPopupScreen)
+const mapDispatchToProps = dispatch => {
+    return {
+        onLoadPopups: () => dispatch(getPopups())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FindPopupScreen)
