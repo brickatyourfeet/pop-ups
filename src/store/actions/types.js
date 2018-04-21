@@ -1,4 +1,5 @@
 export const SET_POPUPS = 'SET_POPUPS' 
+export const REMOVE_POPUP = 'REMOVE_POPUP'
 
 export const SUBMIT_ATTEMPT = 'SUBMIT_ATTEMPT'
 

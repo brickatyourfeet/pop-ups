@@ -1,4 +1,4 @@
-import { SET_POPUPS } from '../actions/types'
+import { SET_POPUPS, REMOVE_POPUP } from '../actions/types'
 
 const initialState = {
     popups: []
@@ -11,13 +11,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 popups: action.popups
             }
-            // case DELETE_POPUP:
-            //     return {
-            //         ...state,
-            //         popups: state.popups.filter(spot => {
-            //             return spot.key !== action.key
-            //           })
-            //     }
+            case REMOVE_POPUP:
+                return {
+                    ...state,
+                    popups: state.popups.filter(spot => {
+                        return spot.key !== action.key
+                      })
+                }
         default:
             return state
             

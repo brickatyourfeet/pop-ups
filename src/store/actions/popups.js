@@ -1,4 +1,4 @@
-import { SET_POPUPS } from './types'
+import { SET_POPUPS, REMOVE_POPUP } from './types'
 import { uiStartLoading, uiStopLoading } from './index'
 
 export const addPopup = (spot, location, start, end, info, image) => {
@@ -75,8 +75,25 @@ export const setPopups = popups => {
 }
 
 export const deletePopup = (key) => {
+    return dispatch => {
+        dispatch(removePopup(key))
+        fetch('https://popups-1517513406459.firebaseio.com/popups/' + key + '.json', {
+                method: 'DELETE'
+            })
+            .catch(err => {
+                alert('An error occurred, pleast try again.')
+                console.log(err)
+            })
+            .then(res => res.json())
+            .then(parsedRes => {
+                console.log('popup deleted')
+            })
+    }
+}
+
+export const removePopup = key => {
     return {
-        type: DELETE_POPUP,
+        type: REMOVE_POPUP,
         key: key
     }
 }
