@@ -3,10 +3,12 @@ import thunk from 'redux-thunk'
 
 import bigReducer from './reducers/popups'
 import uiReducer from './reducers/ui'
+import authReducer from './reducers/auth'
 
 const rootReducer = combineReducers({
     popups: bigReducer,
-    ui: uiReducer
+    ui: uiReducer,
+    auth: authReducer
 })
 
 let composeEnhancers = compose

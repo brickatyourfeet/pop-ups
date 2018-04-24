@@ -1,4 +1,4 @@
-import { SUBMIT_ATTEMPT } from './types'
+import { SUBMIT_ATTEMPT, AUTH_SET_TOKEN } from './types'
 import { uiStartLoading, uiStopLoading } from './index'
 import startMainTabApp from '../../screens/MainTabs/startMainTabApp';
 
@@ -29,11 +29,33 @@ export const submitAttempt = (authData, authMode) => {
         .then(res => res.json)
         .then(parsedRes => {
             dispatch(uiStopLoading())
-            if(parsedRes.error){
+            if(!parsedRes.idToken){
                 alert('authentication failed, please try again.')
             }else{
+                dispatch(authSetToken(parsedRes.idToken))
                 startMainTabApp()
             }
         })
+    }
+}
+
+export const authSetToken = token => {
+    return {
+        type: AUTH_SET_TOKEN,
+        token: token
+    }
+}
+
+export const authGetToken = () => {
+    return (dispatch, getState) => {
+        const promise = new Promise((resolve, reject) => {
+            const token = getState().auth.token
+            if(!token){
+                reject()
+            }else{
+                resolve(token)
+            }
+        })
+        return promise
     }
 }
