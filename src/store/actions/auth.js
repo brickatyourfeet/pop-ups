@@ -2,9 +2,13 @@ import { SUBMIT_ATTEMPT } from './types'
 import { uiStartLoading, uiStopLoading } from './index'
 import startMainTabApp from '../../screens/MainTabs/startMainTabApp';
 
-export const submitAttempt = (authData) => {
+export const submitAttempt = (authData, authMode) => {
     return dispatch => {
-        dispatch(authSignup(authData))
+        if(authMode === 'login'){
+
+        }else{
+            dispatch(authSignup(authData))
+        }
     }
 }
 

@@ -49,12 +49,12 @@ class AuthScreen extends Component {
         })
     }
     
-    loginHandler = () => {
+    authHandler = () => {
         const authData = {
             email: this.state.controls.email.value,
             password: this.state.controls.password.value
         }
-        this.props.onLogin()
+        this.props.onAuthAttempt(authData, this.state.authMode)
     }
 
     updateInputState = (key, value) => {
@@ -102,7 +102,7 @@ class AuthScreen extends Component {
         let submitButton = (
             <FilledButton 
                     color="teal" 
-                    onPress={this.loginHandler}
+                    onPress={this.authHandler}
                     disabled={!this.state.controls.confirmPassword.valid && this.state.authMode === 'signup' ||
                         !this.state.controls.password.valid || 
                         !this.state.controls.email.valid}
@@ -195,7 +195,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogin: (authData) => dispatch(submitAttempt(authData))
+        onAuthAttempt: (authData, authMode) => dispatch(submitAttempt(authData, authMode))
     }
 }
 
