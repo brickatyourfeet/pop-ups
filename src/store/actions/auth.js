@@ -1,4 +1,6 @@
 import { SUBMIT_ATTEMPT } from './types'
+import { uiStartLoading, uiStopLoading } from './index'
+import startMainTabApp from '../../screens/MainTabs/startMainTabApp';
 
 export const submitAttempt = (authData) => {
     return dispatch => {
@@ -8,6 +10,7 @@ export const submitAttempt = (authData) => {
 
 export const authSignup = (authData) => {
     return dispatch => {
+            dispatch(uiStartLoading())
         fetch('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=AIzaSyAPGVeDasm4S7x0IGL8Txpph7crqztSdUk', {
             method: 'POST',
             body: JSON.stringify({
@@ -20,12 +23,18 @@ export const authSignup = (authData) => {
             }
         })
         .catch(err => {
+            dispatch(uiStopLoading())
             console.log(err)
             alert('authentication failed. please try again.')
         })
         .then(res => res.json)
         .then(parsedRes => {
-            console.log(parsedRes)
+            dispatch(uiStopLoading())
+            if(parsedRes.error){
+                alert('authentication failed, please try again.')
+            }else{
+                startMainTabApp()
+            }
         })
     }
 }

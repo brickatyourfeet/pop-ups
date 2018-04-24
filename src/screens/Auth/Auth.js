@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Text, View, Button, TextInput, StyleSheet, ImageBackground, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { Text, View, Button, TextInput, StyleSheet, ImageBackground, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, ActivityIndicator } from 'react-native'
 import launchIndexTabs from '../MainTabs/startMainTabApp'
-import startMainTabApp from '../MainTabs/startMainTabApp';
 import DefaultInput from '../../components/UIComponents/DefaultInput'
 import Header from '../../components/UIComponents/Header'
 import GlobalText from '../../components/UIComponents/GlobalText'
@@ -56,7 +55,6 @@ class AuthScreen extends Component {
             password: this.state.controls.password.value
         }
         this.props.onLogin()
-        startMainTabApp()
     }
 
     updateInputState = (key, value) => {
@@ -101,6 +99,17 @@ class AuthScreen extends Component {
 
     render () {
         let confirmPasswordControl = null
+        let submitButton = (
+            <FilledButton 
+                    color="teal" 
+                    onPress={this.loginHandler}
+                    disabled={!this.state.controls.confirmPassword.valid && this.state.authMode === 'signup' ||
+                        !this.state.controls.password.valid || 
+                        !this.state.controls.email.valid}
+                    >
+                     Submit
+                     </FilledButton>
+        )
 
         if (this.state.authMode === 'signup'){
             confirmPasswordControl = (
@@ -114,7 +123,10 @@ class AuthScreen extends Component {
                     />
             )
         }
-         return (
+        if(this.props.isLoading){
+            submitButton = <ActivityIndicator />
+        } 
+        return (
             <ImageBackground source={backgroundImage} style={styles.background}>
              <KeyboardAvoidingView style={styles.container}
              behavior='padding'
@@ -148,16 +160,7 @@ class AuthScreen extends Component {
                     {confirmPasswordControl}
                     </View>
                     </TouchableWithoutFeedback>
-                    <FilledButton 
-                    color="teal" 
-                    onPress={this.loginHandler}
-                    disabled={!this.state.controls.confirmPassword.valid && this.state.authMode === 'signup' ||
-                        !this.state.controls.password.valid || 
-                        !this.state.controls.email.valid}
-                    >
-                     Submit
-                     </FilledButton>
-                
+                    {submitButton}
              </KeyboardAvoidingView>
              </ImageBackground>
          ) 
@@ -184,10 +187,16 @@ const styles = StyleSheet.create({
     }
 })
 
+const mapStateToProps = state => {
+    return {
+        isLoading: state.ui.isLoading
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         onLogin: (authData) => dispatch(submitAttempt(authData))
     }
 }
 
-export default connect(null, mapDispatchToProps)(AuthScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(AuthScreen)
