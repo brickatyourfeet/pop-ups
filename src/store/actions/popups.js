@@ -30,14 +30,14 @@ export const addPopup = (spot, location, start, end, info, image) => {
                 body: JSON.stringify(popupData)
             })
         })
-        .catch(err => {
-            console.log(err)
-            alert('An error occurred. Try again.')
-            dispatch(uiStopLoading())
-        })
         .then(res => res.json())
         .then(parsedRes => {
             console.log(parsedRes)
+            dispatch(uiStopLoading())
+        })
+        .catch(err => {
+            console.log(err)
+            alert('An error occurred. Try again.')
             dispatch(uiStopLoading())
         })
     }
@@ -46,10 +46,6 @@ export const addPopup = (spot, location, start, end, info, image) => {
 export const getPopups = () => {
     return dispatch => {
         fetch('https://popups-1517513406459.firebaseio.com/popups.json')
-        .catch(err => {
-            alert('An error occurred, pleast try again.')
-            console.log(err)
-        })
         .then(res => res.json())
         .then(parsedRes => {
             const popups = []
@@ -63,6 +59,10 @@ export const getPopups = () => {
                 })
             }
             dispatch(setPopups(popups))
+        })
+        .catch(err => {
+            alert('An error occurred, please try again.')
+            console.log(err)
         })
     }
 }
@@ -80,13 +80,13 @@ export const deletePopup = (key) => {
         fetch('https://popups-1517513406459.firebaseio.com/popups/' + key + '.json', {
                 method: 'DELETE'
             })
-            .catch(err => {
-                alert('An error occurred, pleast try again.')
-                console.log(err)
-            })
             .then(res => res.json())
             .then(parsedRes => {
                 console.log('popup deleted')
+            })
+            .catch(err => {
+                alert('An error occurred, pleast try again.')
+                console.log(err)
             })
     }
 }
