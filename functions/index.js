@@ -1,4 +1,5 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin')
 const cors = require('cors')({origin: true});
 const fs = require('fs');
 const UUID = require('uuid-v4')
@@ -10,8 +11,21 @@ const gcconfig = {
 
 const gcs = require('@google-cloud/storage')(gcconfig)
 
+admin.initializeApp({
+    credential: admin.credential.cert(require('./popups.json'))
+})
+
 exports.storeImage = functions.https.onRequest((request, response) => {
     cors(request, response, () => {
+        if(!reqest.headers.authorization || !request.headers.authorization.startsWith('Bearer ')){
+            console.log('token required')
+            response.status(403).json({error: 'unauthorized'})
+            return
+        }
+        let idToken
+        idToken = request.headers.authorization.split('Bearer ')[1] 
+        admin.auth().verifyIdToken(idToken)
+            
         const body = JSON.parse(request.body)
         fs.writeFileSync('/tmp/uploaded-image.jpg', body.image, 'base64', err => {
             console.log(err)

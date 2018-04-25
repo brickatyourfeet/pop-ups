@@ -14,7 +14,7 @@ export const addPopup = (spot, location, start, end, info, image) => {
                     body: JSON.stringify({
                     image: image.base64,
                 })
-        })
+            })
             })
         
         
