@@ -1,3 +1,4 @@
+import { AsyncStorage } from 'react-native'
 import { SUBMIT_ATTEMPT, AUTH_SET_TOKEN } from './types'
 import { uiStartLoading, uiStopLoading } from './index'
 import startMainTabApp from '../../screens/MainTabs/startMainTabApp';
@@ -32,10 +33,17 @@ export const submitAttempt = (authData, authMode) => {
             if(!parsedRes.idToken){
                 alert('authentication failed, please try again.')
             }else{
-                dispatch(authSetToken(parsedRes.idToken))
+                dispatch(authStoreToken(parsedRes.idToken))
                 startMainTabApp()
             }
         })
+    }
+}
+
+export const authStoreToken = token => {
+    return dispatch => {
+        dispatch(authSetToken(token))
+        AsyncStorage.setItem('popup:auth:token', token)
     }
 }
 
@@ -51,7 +59,12 @@ export const authGetToken = () => {
         const promise = new Promise((resolve, reject) => {
             const token = getState().auth.token
             if(!token){
-                reject()
+                AsyncStorage.getItem('popup:auth:token')
+                    .catch(err => reject())
+                    .then(tokenFromStorage => {
+                        dispatch(authSetToken(tokenFromStorage))
+                        resolve(tokenFromStorage)
+                    })
             }else{
                 resolve(token)
             }
