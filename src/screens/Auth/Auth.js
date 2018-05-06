@@ -8,7 +8,7 @@ import FilledButton from '../../components/UIComponents/FilledButton'
 import backgroundImage from '../../images/background9.png'
 import validate from '../../utility/validation'
 import { connect } from 'react-redux'
-import { submitAttempt } from '../../store/actions/index'
+import { submitAttempt, authAutoSignIn } from '../../store/actions/index'
 
 class AuthScreen extends Component {
     state = {
@@ -47,6 +47,10 @@ class AuthScreen extends Component {
                 authMode: prevState.authMode === 'login' ? 'signup' : 'login'
             }
         })
+    }
+
+    componentDidMount() {
+
     }
     
     authHandler = () => {
@@ -196,6 +200,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAuthAttempt: (authData, authMode) => dispatch(submitAttempt(authData, authMode))
+        onAutoSignIn: () => dispatch(authAutoSignIn())
     }
 }
 

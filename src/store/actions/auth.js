@@ -62,6 +62,10 @@ export const authGetToken = () => {
                 AsyncStorage.getItem('popup:auth:token')
                     .catch(err => reject())
                     .then(tokenFromStorage => {
+                        if(!tokenFromStorage) {
+                            reject()
+                            return
+                        }
                         dispatch(authSetToken(tokenFromStorage))
                         resolve(tokenFromStorage)
                     })
@@ -70,5 +74,15 @@ export const authGetToken = () => {
             }
         })
         return promise
+    }
+}
+
+export const authAutoSignIn = () => {
+    return dispatch => {
+        dispatch(authGetToken())
+            .catch(err => console.log('Error fetching token'))
+            .then(token => {
+                startMainTabApp()
+            })
     }
 }
