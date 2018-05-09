@@ -50,7 +50,7 @@ class AuthScreen extends Component {
     }
 
     componentDidMount() {
-
+        this.props.onAutoSignIn
     }
     
     authHandler = () => {
