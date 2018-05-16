@@ -90,6 +90,9 @@ export const authGetToken = () => {
                 resolve(token)
             }
         })
+        promise.catch(err => {
+            dispatch(authClearStorage())
+        })
         return promise
     }
 }
@@ -101,5 +104,12 @@ export const authAutoSignIn = () => {
             startMainTabApp()
         })
         .catch(err => console.log('Error fetching token'))
+    }
+}
+
+export const authClearStorage = () => {
+    return dispatch => {
+        AsyncStorage.removeItem('popup:auth:token')
+        AsyncStorage.removeItem('popup:auth:expiryDate')
     }
 }
