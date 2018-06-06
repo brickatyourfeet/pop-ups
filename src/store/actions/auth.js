@@ -1,7 +1,8 @@
 import { AsyncStorage } from 'react-native'
-import { SUBMIT_ATTEMPT, AUTH_SET_TOKEN } from './types'
+import { SUBMIT_ATTEMPT, AUTH_SET_TOKEN, AUTH_REMOVE_TOKEN } from './types'
 import { uiStartLoading, uiStopLoading } from './index'
 import startMainTabApp from '../../screens/MainTabs/startMainTabApp';
+import App from '../../../App'
 
 const API_KEY = 'AIzaSyAPGVeDasm4S7x0IGL8Txpph7crqztSdUk'
 
@@ -138,5 +139,22 @@ export const authClearStorage = () => {
     return dispatch => {
         AsyncStorage.removeItem('popup:auth:token')
         AsyncStorage.removeItem('popup:auth:expiryDate')
+        return AsyncStorage.removeItem('popup:auth:refreshToken')
+    }
+}
+
+export const authLogout = () => {
+    return dispatch => {
+        dispatch(authClearStorage())
+            .then(() => {
+                App()
+            })
+        dispatch(authRemoveToken())
+    }
+}
+
+export const authRemoveToken = () => {
+    return {
+        type: AUTH_REMOVE_TOKEN
     }
 }

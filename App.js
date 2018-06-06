@@ -20,7 +20,8 @@ Navigation.registerComponent('popups.EventInfoScreen', () => EventInfoScreen, st
 
 Navigation.registerComponent('popups.SideDrawer', () => SideDrawer, store, Provider)
 
-Navigation.startSingleScreenApp({
+//export main app so can run (refresh) on logout
+export default () => Navigation.startSingleScreenApp({
     screen: {
         screen: "popups.AuthScreen",
         title: "Login"
